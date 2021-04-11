@@ -1,9 +1,10 @@
 import express from 'express';
 import { indexPage, messagesPage, addMessage } from '../controllers';
-
+import { modifyMessage, performAsyncAction } from '../middleware';
 const indexRouter = express.Router();
 
 indexRouter.post('/messages', addMessage);
+indexRouter.post('/messages', modifyMessage, performAsyncAction, addMessage);
 indexRouter.get('/', indexPage);
 indexRouter.get('/messages', messagesPage);
 
